@@ -24,7 +24,7 @@ top_frame = ttk.Frame(window)
 top_frame.pack(pady=20)
 
 accessory_frame = ttk.Frame(top_frame)
-accessory_frame.pack(side=tk.LEFT, padx=30)
+accessory_frame.pack(side=tk.LEFT, padx= 62)
 
 canvas_frame=ttk.Frame(top_frame)
 canvas_frame.pack(side=tk.LEFT, padx=30)
@@ -75,9 +75,9 @@ colortheme = ttk.Spinbox(genderandcolor_frame, values=colortheme_items)
 colortheme.pack(anchor=tk.E)
 
 
-#AGE
-age_spinbox_items = 1 +=  
-age_spinbox = ttk.Spinbox(agenameandsaveoptions_frame, )
+# #AGE
+# age_spinbox_items = 1 +=  
+# age_spinbox = ttk.Spinbox(agenameandsaveoptions_frame, )
 
 
 
@@ -108,6 +108,5 @@ age_spinbox = ttk.Spinbox(agenameandsaveoptions_frame, )
 
 
 window.mainloop()
-
 
 
