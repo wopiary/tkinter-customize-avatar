@@ -13,7 +13,9 @@ s.configure('hatstyle.TCheckbutton', font=('Helvetica', 14, 'bold'), foreground=
 s.configure('beardstyle.TCheckbutton', font=('Helvetica', 14, 'bold'), foreground="#2C2C2C")
 s.configure('male.TRadiobutton', font=('Helvetica', 14, 'bold'), foreground="#2C2C2C")
 s.configure('female.TRadiobutton', font=('Helvetica', 14, 'bold'), foreground="#2C2C2C")
-s.configure('colorthemelabel.TLabel', font=('Helvetica', 14, 'bold'), foreground="#2C2C2C")
+s.configure('colorthemelabel.TLabel', font=('Helvetica', 12, 'bold'), foreground="#2C2C2C")
+s.configure('agelabel.TLabel', font=('Helvetica', 12, 'bold'), foreground="#2C2C2C")
+s.configure('namelabel.TLabel', font=('Helvetica', 12, 'bold'), foreground="#2C2C2C")
 #LABEL
 label = tk.Label(window, text='Tkinter Avatar Customizer', font=('Inter', 20, 'bold'), fg="#4A4A4A")
 label.pack(pady=10)
@@ -24,7 +26,7 @@ top_frame = ttk.Frame(window)
 top_frame.pack(pady=20)
 
 accessory_frame = ttk.Frame(top_frame)
-accessory_frame.pack(side=tk.LEFT, padx= 62)
+accessory_frame.pack(side=tk.LEFT, padx= 55)
 
 canvas_frame=ttk.Frame(top_frame)
 canvas_frame.pack(side=tk.LEFT, padx=30)
@@ -32,11 +34,17 @@ canvas_frame.pack(side=tk.LEFT, padx=30)
 genderandcolor_frame=ttk.Frame(top_frame)
 genderandcolor_frame.pack(side=tk.LEFT, padx=30)
 
-colortheme_frame = ttk.Frame(top_frame)
-colortheme_frame.pack(side=tk.LEFT, padx=2)
 
-agenameandsaveoptions_frame=  ttk.Frame(top_frame)
-agenameandsaveoptions_frame.pack(side=tk.LEFT, padx=30)
+bottom_frame =ttk.Frame(window)
+bottom_frame.pack(pady=20, padx=10)
+
+ageanamelabelandsavebutton_frame = ttk.Frame(bottom_frame)
+ageanamelabelandsavebutton_frame.pack(side=tk.LEFT, padx=20)
+
+agespinboxandnameentry_frame =ttk.Frame(bottom_frame)
+agespinboxandnameentry_frame.pack(side=tk.LEFT, padx=20)
+
+
 
 #CANVAS
 canvas = tk.Canvas(canvas_frame, height=300, width=300, bg='white')
@@ -69,22 +77,33 @@ female_button.pack(anchor=tk.E, pady=15)
 
 #COLOR THEMES
 colortheme_label = ttk.Label(genderandcolor_frame, text='Color theme:', style='colorthemelabel.TLabel')
-colortheme_label.pack(anchor=tk.E)
+colortheme_label.pack(anchor=tk.W)
 colortheme_items = ('BLUE', 'RED', 'GREEN', 'YELLOW', 'WHITE', 'BLACK')
 colortheme = ttk.Spinbox(genderandcolor_frame, values=colortheme_items)
 colortheme.pack(anchor=tk.E)
 
 
-# #AGE
-# age_spinbox_items = 1 +=  
-# age_spinbox = ttk.Spinbox(agenameandsaveoptions_frame, )
+#AGE
+
+age_label = ttk.Label(ageanamelabelandsavebutton_frame, text='Age:', style='agelabel.TLabel')
+age_label.pack(anchor=tk.W)
+age_spinbox = ttk.Spinbox(agespinboxandnameentry_frame, from_=1, to=120)
+age_spinbox.pack(anchor=tk.W)
 
 
+#NAME
+name_label = ttk.Label(ageanamelabelandsavebutton_frame, text='Name:', style='namelabel.TLabel')
+name_label.pack(anchor=tk.W)
+name_entry = ttk.Entry(agespinboxandnameentry_frame)
+name_entry.pack(anchor=tk.W)
 
+#SAVE 
+save_button = ttk.Button(ageanamelabelandsavebutton_frame, text='Save')
+save_button.pack(anchor=tk.W, pady=30)
 
-
-
-
+#RESET
+reset_button = ttk.Button(agespinboxandnameentry_frame, text='Reset')
+reset_button.pack(anchor=tk.W, pady=30)
 
 
 
@@ -108,5 +127,5 @@ colortheme.pack(anchor=tk.E)
 
 
 window.mainloop()
-
+ 
 
