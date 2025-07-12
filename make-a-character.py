@@ -91,8 +91,26 @@ beard_button.pack(anchor=tk.W, pady=5)
 gender_var = tk.StringVar()
 male_button = ttk.Radiobutton(genderandcolor_frame, value='male', variable=gender_var, text='Male', style='male.TRadiobutton')
 male_button.pack(anchor=tk.E, pady=0, padx=22)
-male_button.bind('<Button-1>', lambda event: canvas.create_rectangle(170,250, 190,200))
+male_button.bind('<Button-1>', lambda event: (canvas.create_oval(85,50,220,205, width=4, fill="#f9d4bf"), canvas.create_oval(120, 110, 130,120, fill='black', width=2) , 
+                                              canvas.create_oval(175, 110, 185,120, fill='black', width=2),  canvas.create_line(135, 153, 150, 165, 170,153, width=3, smooth=1),
 
+    canvas.create_polygon(
+                                                  105, 170,  # left jaw
+                                                  95, 190,   # lower left
+                                                  125, 215,  # lower mid-left
+                                                  150, 225,  # chin bottom
+                                                  175, 215,  # lower mid-right
+                                                  205, 190,  # lower right
+                                                  195, 170,  # right jaw
+                                                  150, 145,  # upper center (below mouth)
+                                                  fill="#583a1e", outline=""
+                                              ),
+
+                                              # Smile on top
+                                              canvas.create_line(135,160, 150,170, 165,160, width=3, smooth=1)
+                                              ))
+
+ 
 female_button = ttk.Radiobutton(genderandcolor_frame, value='female', variable=gender_var,text='Female', style='female.TRadiobutton')
 female_button.pack(anchor=tk.E, pady=15)
 
@@ -142,6 +160,7 @@ save_button.pack(anchor=tk.W, pady=30)
 #RESET
 reset_button = ttk.Button(agespinboxnameentryandresetbutton_frame, text='Reset')
 reset_button.pack(anchor=tk.W, pady=30)
+reset_button.bind('<Button-1>', lambda event: canvas.delete('all'))
 
 
 
