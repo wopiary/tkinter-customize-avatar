@@ -92,8 +92,10 @@ gender_var = tk.StringVar()
 male_button = ttk.Radiobutton(genderandcolor_frame, value='male', variable=gender_var, text='Male', style='male.TRadiobutton')
 male_button.pack(anchor=tk.E, pady=0, padx=22)
 male_button.bind('<Button-1>', lambda event: (canvas.create_oval(85,50,220,205, width=4, fill="#f9d4bf"), canvas.create_oval(120, 110, 130,120, fill='black', width=2) , 
-                                              canvas.create_oval(175, 110, 185,120, fill='black', width=2),  canvas.create_line(135, 153, 150, 165, 170,153, width=3, smooth=1),  
-                                              canvas.create_line(85,125, 110,172, 135,130, 140,130,153,150,160,145,                  fill="#583a1e", smooth=1),
+                                              canvas.create_oval(175, 110, 185,120, fill='black', width=2),
+                                              canvas.create_polygon(85, 125, 110, 172, 135, 130, 140, 130, 153, 150, 160, 145, 173, 130, 178, 130, 198, 172, 223, 125, 220, 135, 215, 150, 210, 
+                                                                    165, 200, 180, 185, 195, 152, 205, 120, 195, 105, 180, 95, 165, 90, 150, 85, 135, fill="#8B4513", outline="", width=0), 
+                                               canvas.create_line(135, 153, 150, 165, 170,153, width=3, smooth=1)
                                               
                                               ))
 
@@ -148,7 +150,7 @@ save_button.pack(anchor=tk.W, pady=30)
 #RESET
 reset_button = ttk.Button(agespinboxnameentryandresetbutton_frame, text='Reset')
 reset_button.pack(anchor=tk.W, pady=30)
-reset_button.bind('<Button-1>', lambda event: (canvas.delete('all'), gender_var.set(''), age_spinbox.set(''), name_entry.delete(0,tk.END)))
+reset_button.bind('<Button-1>', lambda event: (canvas.delete('all'), gender_var.set(''), age_spinbox.set(''), name_entry.delete(0,tk.END), glasses_var.set(False), hat_var.set(False), beard_var.set(False), colortheme.set('')))
 
 
 
