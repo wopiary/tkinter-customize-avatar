@@ -62,8 +62,8 @@ agespinboxnameentryandresetbutton_frame.pack(side=tk.LEFT, padx=20)
 
 
 #CANVAS
-canvas = tk.Canvas(canvas_frame, height=300, width=300, bg='white')
-canvas.pack()   
+# canvas = tk.Canvas(canvas_frame, height=300, width=300)
+# canvas.pack()   
 
 
 
@@ -112,9 +112,14 @@ colortheme_label = ttk.Label(genderandcolor_frame, text='Color theme:', style='c
 colortheme_label.pack(anchor=tk.W)
 colortheme_items = ('BLUE', 'RED', 'GREEN', 'YELLOW', 'WHITE', 'BLACK')
 colortheme = ttk.Spinbox(genderandcolor_frame, values=colortheme_items)
+colortheme.bind('<<SpinboxSelected>>', lambda event: canvas.config(bg=colortheme.get()))
+colortheme.bind('<KeyRelease>', lambda event: canvas.config(bg=colortheme.get()))
+colortheme.bind('<ButtonRelease-1>', lambda event: canvas.config(bg=colortheme.get()))
 colortheme.pack(anchor=tk.E)
 
 
+canvas = tk.Canvas(canvas_frame, height=300, width=300)
+canvas.pack()   
 
 
 
