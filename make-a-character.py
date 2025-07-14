@@ -70,17 +70,32 @@ agespinboxnameentryandresetbutton_frame.pack(side=tk.LEFT, padx=20)
 
 
 #ACCESSORIES
+def draw_glasses(event):
+    if glasses_var.get():
+        canvas.delete('glasses')
+    else:
+        (canvas.create_oval(110, 100, 140,130, width=1, tags='glasses'), canvas.create_line(140,115,165,115, tags='glasses'),canvas.create_oval(165,100, 195,130, tags='glasses'))   
 glasses_var = tk.BooleanVar()
 glasses_button = ttk.Checkbutton(accessory_frame, text='Glasses', variable=glasses_var, style='glassesstyle.TCheckbutton')
+glasses_button.bind('<ButtonRelease-1>', draw_glasses)
 glasses_button.pack(anchor=tk.W, pady=5)
+
 
 hat_var = tk.BooleanVar()
 hat_button = ttk.Checkbutton(accessory_frame, text='Hat', variable=hat_var, style='hatstyle.TCheckbutton')
 hat_button.pack(anchor=tk.W, pady=5)
 
 
+def draw_beard(event):
+    if beard_var.get():
+        canvas.delete('beard')
+    else:
+        (canvas.create_polygon(85, 125, 110, 172, 135, 130, 140, 130, 153, 150, 160, 145, 173, 130, 178, 130, 198, 172, 223, 125, 220, 135, 215, 150, 210, 
+                                                                    165, 200, 180, 185, 195, 152, 205, 120, 195, 105, 180, 95, 165, 90, 150, 85, 135, fill="#8B4513", outline="", width=0, tags='beard'), 
+                                                                    (canvas.create_line(135, 153, 150, 165, 170,153, width=3, smooth=1, tags='beard') ))
 beard_var = tk.BooleanVar()
 beard_button = ttk.Checkbutton(accessory_frame, text='Beard', variable=beard_var, style='beardstyle.TCheckbutton')
+beard_button.bind('<ButtonRelease-1>',draw_beard)
 beard_button.pack(anchor=tk.W, pady=5)
 
 
@@ -91,19 +106,20 @@ beard_button.pack(anchor=tk.W, pady=5)
 gender_var = tk.StringVar()
 male_button = ttk.Radiobutton(genderandcolor_frame, value='male', variable=gender_var, text='Male', style='male.TRadiobutton')
 male_button.pack(anchor=tk.E, pady=0, padx=22)
-male_button.bind('<Button-1>', lambda event: (canvas.create_oval(85,50,220,205, width=4, fill="#f9d4bf"), canvas.create_oval(120, 110, 130,120, fill='black', width=2) , 
-                                              canvas.create_oval(175, 110, 185,120, fill='black', width=2),
-                                              canvas.create_polygon(85, 125, 110, 172, 135, 130, 140, 130, 153, 150, 160, 145, 173, 130, 178, 130, 198, 172, 223, 125, 220, 135, 215, 150, 210, 
-                                                                    165, 200, 180, 185, 195, 152, 205, 120, 195, 105, 180, 95, 165, 90, 150, 85, 135, fill="#8B4513", outline="", width=0), 
-                                               canvas.create_line(135, 153, 150, 165, 170,153, width=3, smooth=1)
+male_button.bind('<Button-1>', lambda event: (canvas.create_oval(85,50,220,205, width=4, fill="#f9d4bf"), #HEAD 
+                                              canvas.create_oval(85,110, 70,150, fill="#cfb2a1", width=4),#EYE EAR
+                                              canvas.create_oval(220,110, 235,150, fill="#cfb2a1", width=4),
+                                              canvas.create_oval(120, 110, 130,120, fill='black', width=2) , #EYE LEFT
+                                              canvas.create_oval(175, 110, 185,120, fill='black', width=2), #EYE RIGHT
+                                              canvas.create_line(135, 153, 150, 165, 170,153, width=3, smooth=1) #SMILE
                                               
                                               ))
-
- 
 female_button = ttk.Radiobutton(genderandcolor_frame, value='female', variable=gender_var,text='Female', style='female.TRadiobutton')
 female_button.pack(anchor=tk.E, pady=15)
 
 
+canvas = tk.Canvas(canvas_frame, height=300, width=300, bg='white')
+canvas.pack()   
 
 
 
@@ -118,8 +134,6 @@ colortheme.bind('<ButtonRelease-1>', lambda event: canvas.config(bg=colortheme.g
 colortheme.pack(anchor=tk.E)
 
 
-canvas = tk.Canvas(canvas_frame, height=300, width=300)
-canvas.pack()   
 
 
 
@@ -155,7 +169,8 @@ save_button.pack(anchor=tk.W, pady=30)
 #RESET
 reset_button = ttk.Button(agespinboxnameentryandresetbutton_frame, text='Reset')
 reset_button.pack(anchor=tk.W, pady=30)
-reset_button.bind('<Button-1>', lambda event: (canvas.delete('all'), gender_var.set(''), age_spinbox.set(''), name_entry.delete(0,tk.END), glasses_var.set(False), hat_var.set(False), beard_var.set(False), colortheme.set('')))
+reset_button.bind('<Button-1>', lambda event: (canvas.delete('all'), gender_var.set(''), age_spinbox.set(''), name_entry.delete(0,tk.END), glasses_var.set(False), 
+                                               hat_var.set(False), beard_var.set(False), colortheme.set(''), canvas.config(bg='white')))
 
 
 
