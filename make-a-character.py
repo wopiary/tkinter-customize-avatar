@@ -74,7 +74,7 @@ def draw_glasses(event):
     if glasses_var.get():
         canvas.delete('glasses')
     else:
-        (canvas.create_oval(110, 100, 140,130, width=1, tags='glasses'), canvas.create_line(140,115,165,115, tags='glasses'),canvas.create_oval(165,100, 195,130, tags='glasses'))   
+        (canvas.create_oval(110, 100, 140,130, width=1, tags='glasses'), canvas.create_line(140,115, 152,110 ,165,115, smooth=1, tags='glasses'),canvas.create_oval(165,100, 195,130, tags='glasses'))   
 glasses_var = tk.BooleanVar()
 glasses_button = ttk.Checkbutton(accessory_frame, text='Glasses', variable=glasses_var, style='glassesstyle.TCheckbutton')
 glasses_button.bind('<ButtonRelease-1>', draw_glasses)
@@ -91,7 +91,7 @@ def draw_beard(event):
         canvas.delete('beard')
     else:
         (canvas.create_polygon(85, 125, 110, 172, 135, 130, 140, 130, 153, 150, 160, 145, 173, 130, 178, 130, 198, 172, 223, 125, 220, 135, 215, 150, 210, 
-                                                                    165, 200, 180, 185, 195, 152, 205, 120, 195, 105, 180, 95, 165, 90, 150, 85, 135, fill="#8B4513", outline="", width=0, tags='beard'), 
+                                                                    165, 200, 180, 185, 195, 152, 205, 120, 195, 105, 180, 95, 165, 90, 150, 85, 135, fill="#5f3d26", outline="", width=0, tags='beard'), 
                                                                     (canvas.create_line(135, 153, 150, 165, 170,153, width=3, smooth=1, tags='beard') ))
 beard_var = tk.BooleanVar()
 beard_button = ttk.Checkbutton(accessory_frame, text='Beard', variable=beard_var, style='beardstyle.TCheckbutton')
@@ -106,14 +106,31 @@ beard_button.pack(anchor=tk.W, pady=5)
 gender_var = tk.StringVar()
 male_button = ttk.Radiobutton(genderandcolor_frame, value='male', variable=gender_var, text='Male', style='male.TRadiobutton')
 male_button.pack(anchor=tk.E, pady=0, padx=22)
-male_button.bind('<Button-1>', lambda event: (canvas.create_oval(85,50,220,205, width=4, fill="#f9d4bf"), #HEAD 
-                                              canvas.create_oval(85,110, 70,150, fill="#cfb2a1", width=4),#EYE EAR
-                                              canvas.create_oval(220,110, 235,150, fill="#cfb2a1", width=4),
+male_button.bind('<Button-1>', lambda event: (
+canvas.create_polygon([
+    120,193, 120,205, 118,210, 115,213, 110,215,
+    105,217, 100,220, 95,225, 90,230, 85,235, 80,240, 75,250, 70,265,
+    65,280, 60,300, 57,320, 55,350, 55,450,
+    250,450, 255,350, 253,320, 250,300, 245,280, 240,265, 235,250,
+    230,240, 225,235, 220,230, 215,225, 210,220, 205,217, 200,215,
+    195,213, 190,210, 188,207, 185,205, 185,193,
+    120,193
+], fill="#2392ab", outline="black", width=3, smooth=True),
+canvas.create_oval(85,50,220,205, width=4, fill="#fbdbba"), #HEAD 
+                                              canvas.create_oval(85,110, 70,150, fill="#fbdbba", width=4),#EAR LEFT
+                                              canvas.create_oval(220,110, 235,150, fill="#fbdbba", width=4), #EAR RIGHT
                                               canvas.create_oval(120, 110, 130,120, fill='black', width=2) , #EYE LEFT
                                               canvas.create_oval(175, 110, 185,120, fill='black', width=2), #EYE RIGHT
-                                              canvas.create_line(135, 153, 150, 165, 170,153, width=3, smooth=1) #SMILE
-                                              
+                                              canvas.create_line(135, 153, 150, 165, 170,153, width=3, smooth=1), #SMILE
+                                              canvas.create_line(110,240, 115,300, width=2),
+                                              canvas.create_line(200,240, 195,300, width=2)
+
                                               ))
+
+
+
+
+
 female_button = ttk.Radiobutton(genderandcolor_frame, value='female', variable=gender_var,text='Female', style='female.TRadiobutton')
 female_button.pack(anchor=tk.E, pady=15)
 
